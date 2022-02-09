@@ -1,8 +1,7 @@
 # Custom Pokedex
 
-Custom Pokedex built with React, HTML, CSS and JS. I used Axios to make the API calls from the Pokeapi.
+Custom Pokedex built with React, HTML, CSS and JS. I used Axios to make the API calls from the Pokeapi.  
 I left out the usage of Bootstrap library as I was informed that UI development with HTML and CSS was an important part of this test. Also, I opted for the usage of vanilla CSS instead of Sass, to preserve the simplicity of the project.
-Live demo: https://custom-pokedex.netlify.app
 
 ## How to run
 Clone the repository on the desired directory
