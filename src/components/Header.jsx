@@ -15,6 +15,7 @@ const Header = ({ setSearchQuery }) => {
           type="text"
           placeholder="Enter a Pokemon name..."
           onChange={(e) => setSearchQuery(e.target.value)}
+          tabIndex={0}
         />
       </form>
     </header>

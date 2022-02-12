@@ -68,6 +68,15 @@ const SinglePokemonView = () => {
               </div>
             </div>
           </div>
+
+          <div className="pokemon-details__abilities">
+            <h2>Abilities</h2>
+            <div className="pokemon-details__abilities__container">
+              <div>
+                {pokemon.abilities[0].ability.name}
+              </div>
+            </div>
+          </div>
         </article>
       ) : (
         <Puff color="#ebebeb" height={50} width={50} />
