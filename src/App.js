@@ -23,7 +23,7 @@ function App() {
           setPokemons(res.data.results);
           setPokemonsAPICallData(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => err);
 
       // Fetch the entire list of pokemons available, which will be used later to filter out by name or id on search
       await axios
@@ -31,7 +31,7 @@ function App() {
         .then((res) => {
           setPokemonsFullList(res.data.results);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => err);
     }
 
     fetchPokemons();
@@ -40,9 +40,13 @@ function App() {
   useEffect(() => {
     // Search function
     async function searchPokemons() {
+      //If we are in the Single Pokemon view and we try to make a search, bring us back to the homepage
+      const location = window.location.href;
+      if (searchQuery && location.includes("/pokemon")) window.location.href = "http://localhost:3000";
+        
       // Check and execute based on if the query is a number, a string or empty.
       // Make the correspondant API call and set the state to match the results
-      if (!isNaN(searchQuery) && searchQuery > 0) {
+      if (!isNaN(searchQuery) && searchQuery > 0 && searchQuery <= 898) {
         await axios
           .get(`https://pokeapi.co/api/v2/pokemon/${searchQuery}`)
           .then((res) =>
@@ -53,7 +57,7 @@ function App() {
               },
             ])
           )
-          .catch((err) => console.log(err));
+          .catch((err) => err);
       } else if (isNaN(searchQuery)) {
         const updatedPokemonList = pokemonsFullList.filter((pokemon) =>
           pokemon.name.includes(searchQuery.toLowerCase())
@@ -66,21 +70,21 @@ function App() {
             setPokemons(res.data.results);
             setPokemonsAPICallData(res.data);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => err);
       }
     }
 
     searchPokemons();
-  }, [searchQuery]);
+  }, [searchQuery]); //eslint-disable-line
 
   return (
     <div className="App container">
+      <Header setSearchQuery={setSearchQuery} />
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <Header setSearchQuery={setSearchQuery} />
               <PokemonsGallery
                 pokemons={pokemons}
                 setSearchUrl={setSearchUrl}
@@ -89,7 +93,7 @@ function App() {
             </>
           }
         />
-        <Route path="/:pokemonName" element={<SinglePokemonView />} />
+        <Route path="/pokemon/:pokemonName" element={<SinglePokemonView />} />
       </Routes>
     </div>
   );

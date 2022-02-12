@@ -5,7 +5,7 @@ import { Puff } from "react-loader-spinner";
 const PokemonsGallery = ({ pokemons, setSearchUrl, pokemonsAPICallData }) => {
   return (
     <section id="pokemons">
-      <div className="pokemons__container">
+      <div className={`pokemons__container ${pokemons.length === 0 && 'is_empty'}`}>
         {pokemons.length > 0 ? (
           pokemons.map((pokemon) => (
             <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />

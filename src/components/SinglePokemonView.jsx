@@ -22,20 +22,19 @@ const SinglePokemonView = () => {
 
   useEffect(() => {
     fetchSinglePokemon();
-  }, []);
+  }, []); //eslint-disable-line
 
   return (
     <section id="pokemon-details">
-      <a href="/" className="button home-btn">
-        <img src="https://img.icons8.com/material-outlined/24/000000/home--v2.png" />
-      </a>
       {pokemon ? (
         <article
           className="pokemon-details__container pokemon-card"
           pokemontype={pokemon.types[0].type.name}
         >
           <div className="pokemon-details__header pokemon-card__info-wrapper">
-            <h1 className="pokemon-details__title">{pokemon.name}</h1>
+            <h1 className="pokemon-details__title">
+              {pokemon.name} <span>#{pokemon.id}</span>
+            </h1>
           </div>
           <div className="pokemon-details__info">
             <img

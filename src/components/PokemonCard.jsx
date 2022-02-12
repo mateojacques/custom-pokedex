@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const PokemonCard = ({ pokemonUrl }) => {
   const [pokemon, setPokemon] = useState({});
@@ -21,7 +22,7 @@ const PokemonCard = ({ pokemonUrl }) => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, []); //eslint-disable-line
 
   return (
     <>
@@ -30,7 +31,7 @@ const PokemonCard = ({ pokemonUrl }) => {
           className="pokemon-card"
           pokemontype={pokemon.types[0].type.name}
         >
-          <a href={`/${pokemon.name}`}>
+          <a href={`/pokemon/${pokemon.name}`}>
             <img
               src={pokemon.sprites.other["official-artwork"].front_default}
               alt={pokemon.name}
@@ -39,7 +40,7 @@ const PokemonCard = ({ pokemonUrl }) => {
           </a>
           <div className="pokemon-card__info-wrapper">
             <p className="pokemon-card__id">#{pokemon.id}</p>
-            <h1 className="pokemon-card__name">{pokemon.name}</h1>
+            <Link to={`/pokemon/${pokemon.name}`} className="pokemon-card__name">{pokemon.name}</Link>
           </div>
         </article>
       ) : (
