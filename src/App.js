@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import { Header, PokemonsGallery, SinglePokemonView } from "./components";
 
@@ -42,7 +42,7 @@ function App() {
     async function searchPokemons() {
       //If we are in the Single Pokemon view and we try to make a search, bring us back to the homepage
       const location = window.location.href;
-      if (searchQuery && location.includes("/pokemon")) window.location.href = "http://localhost:3000";
+      if (searchQuery && location.includes("/pokemon")) window.location.href = '/';
         
       // Check and execute based on if the query is a number, a string or empty.
       // Make the correspondant API call and set the state to match the results
