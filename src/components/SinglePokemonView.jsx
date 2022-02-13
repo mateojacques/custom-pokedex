@@ -64,7 +64,7 @@ const SinglePokemonView = () => {
               </div>
               <div>
                 <h4>Special move</h4>
-                <p>{pokemon.moves[0].move.name}</p>
+                <p>{pokemon.moves[0] ? pokemon.moves[0].move.name.replace("-", " ") : '-'}</p>
               </div>
             </div>
           </div>
@@ -72,9 +72,21 @@ const SinglePokemonView = () => {
           <div className="pokemon-details__abilities">
             <h2>Abilities</h2>
             <div className="pokemon-details__abilities__container">
-              <div>
-                {pokemon.abilities[0].ability.name}
-              </div>
+              {pokemon.abilities.map((abilityContainer) => (
+                <span key={abilityContainer.ability.name}>{abilityContainer.ability.name.replace("-", " ")}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="pokemon-details__featured">
+            <p>
+              This pokemon was featured in this games:
+              <br />
+            </p>
+            <div>
+              {pokemon.game_indices.length > 0 ? pokemon.game_indices.map((game) => (
+                <span key={game.version.name}>{game.version.name.replace("-", " ")}</span>
+              )) : '-'}
             </div>
           </div>
         </article>

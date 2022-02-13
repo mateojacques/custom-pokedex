@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ setSearchQuery }) => {
+const Header = ({ setSearchQuery, searchQuery }) => {
   return (
     <header className="header">
       <a href="/" className="logo">
@@ -15,6 +15,7 @@ const Header = ({ setSearchQuery }) => {
           type="text"
           placeholder="Enter a Pokemon name..."
           onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
           tabIndex={0}
         />
       </form>
